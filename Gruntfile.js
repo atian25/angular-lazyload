@@ -12,6 +12,7 @@ module.exports = function (grunt) {
   //define tasks
   //启动Web服务器,监控变更,自动加载
   grunt.registerTask('server', ['connect', 'open', 'watch']);
+  grunt.registerTask('build', ['clean', 'concat', 'uglify']);
 
 
   //读取配置
@@ -67,6 +68,38 @@ module.exports = function (grunt) {
           cfg.src + '/**'
         ],
         tasks: []
+      }
+    },
+
+    //清理
+    clean: {
+      build: ['dist/*']
+    },
+
+    //复制
+    concat: {
+      options: {
+        //banner: '/*! <%= cfg.pkg.name %> - v<%= cfg.pkg.version %> - <%= cfg.pkg.repository.url %> - <%= grunt.template.today("yyyy-mm-dd") %> */'
+      },
+      build: {
+        files: [
+          {expand: true, cwd:'src/', src: ['angular-sea.js'], dest: 'dist/'}
+        ]
+      }
+    },
+
+    //压缩
+    uglify: {
+      options: {
+        banner: '/*! <%= cfg.pkg.name %> - v<%= cfg.pkg.version %> - <%= cfg.pkg.repository.url %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
+        mangle: {
+          except: ['require','exports', 'module']
+        }
+      },
+      build: {
+        files: {
+          'dist/angular-sea.min.js' : ['dist/angular-sea.js']
+        }
       }
     }
   });
