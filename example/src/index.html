@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>angular-seajs-showcase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+
+  <div>
+    <a href="#main">main</a> | <a href="#test/a">testA</a> | <a href="#test/b/123">testB</a>
+  </div>
+  <!-- route container -->
+  <div data-ng-view data-ng-cloak id="view"></div>
+
+  <!-- preload script -->
+  <!-- Note: when adding new script, need to config copy task at Gruntfile.js -->
+  <script src="components/seajs/sea.js" id="seajsnode"></script>
+  <script src="components/angular/angular.js"></script>
+  <script src="components/angular-route/angular-route.js"></script>
+  <script>
+    // seajs config
+    seajs.config({
+      base: './'
+    });
+
+    seajs.on('error', function(module){
+      if(module.status!=5){
+        console.error('seajs error: ', module);
+      }
+    });
+
+    //步骤一: 通过seajs加载angular-sea, 并手动bootstrap
+    seajs.use(['../../src/angular-sea', 'app'], function(ngSea, app){
+      angular.bootstrap(document, ['app']);
+    });
+  </script>
+</body>
+</html>

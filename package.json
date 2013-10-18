@@ -1,0 +1,19 @@
+{
+  "name": "angular-seajs",
+  "version": "0.1.0",
+  "author": "TZ <atian25@qq.com>",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-connect": "latest",
+    "grunt-contrib-htmlmin": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "matchdep": "latest",
+    "connect-livereload": "latest",
+    "connect-route": "latest",
+    "shelljs": "latest"
+  }
+}

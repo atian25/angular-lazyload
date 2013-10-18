@@ -1,0 +1,7 @@
+*.psd
+.idea
+/dist
+/node_modules
+/src/components
+/example/src/components
+.DS_Store
