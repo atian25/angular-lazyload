@@ -26,6 +26,7 @@ define(function (require, exports, module) {
       };
     }
   ]).run(['$rootScope', function($rootScope){
+    //console.log('init ngSea');
     patchScope($rootScope);
   }]);
 

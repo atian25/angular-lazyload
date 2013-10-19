@@ -12,6 +12,7 @@ module.exports = function (grunt) {
   //define tasks
   //启动Web服务器,监控变更,自动加载
   grunt.registerTask('server', ['connect', 'open', 'watch']);
+  grunt.registerTask('dev', ['connect', 'open', 'watch:dev']);
   grunt.registerTask('build', ['clean', 'concat', 'uglify']);
 
 
@@ -68,6 +69,12 @@ module.exports = function (grunt) {
           cfg.src + '/**'
         ],
         tasks: []
+      },
+      dev: {
+        files: [
+          cfg.src + '/**'
+        ],
+        tasks: ['build']
       }
     },
 

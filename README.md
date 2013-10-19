@@ -85,5 +85,6 @@
 4. 安装依赖库 -- 命令行到项目根目录,执行 `npm install` 
 5. 安装Web类库 --  命令行到**example**目录,执行 `bower install`
 6. 运行示例 -- 命令行执行 `grunt server`, 将自动打开浏览器显示首页
+7. 若参与开发则 -- 命令行执行 `grunt dev`, 欢迎通过PullRequest贡献代码 
 
 
