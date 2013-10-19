@@ -1,9 +1,9 @@
-# angular-sea 
+# angular-seajs
 
 #### 通过[Sea.js](http://seajs.org/)动态按需加载[AngularJS](http://angularjs.org) 模块。
 
 ---
-**[下载](dist/angular-sea.js)** (or **[压缩版](dist/angular-sea.min.js)**) **|**
+**[下载](dist/angular-seajs.js)** (or **[压缩版](dist/angular-seajs.min.js)**) **|**
 **[使用指南](#使用指南) |**
 **[基本原理](#基本原理) |**
 **[TODO/贡献代码](#TODO) |**
@@ -15,23 +15,23 @@
 ### 使用指南
 
 **(1)** 安装
-- 通过[Bower](http://bower.io/)安装: `bower install angular-sea`
-- 直接下载: [Download](dist/angular-sea.js) (or [Minified](dist/angular-sea.min.js))
+- 通过[Bower](http://bower.io/)安装: `bower install angular-seajs`
+- 直接下载: [Download](dist/angular-seajs.js) (or [Minified](dist/angular-seajs.min.js))
 
 **(2)** 在你的`index.html`中先引入`angular.js`和`sea.js`。
 
-**(3)** 通过`seajs`加载`angular-sea`, 并手动启动bootstrap。
+**(3)** 通过`seajs`加载`angular-seajs`, 并手动启动bootstrap。
 ```
-  //修改`../../src/angular-sea`为`angular-sea`的存放路径, app为你的主模块文件`app.js` 
-  seajs.use(['../../src/angular-sea', 'app'], function(ngSea, app){
+  //修改`../../dist/angular-seajs`为`angular-seajs`的实际存放路径, app为你的主模块文件`app.js` 
+  seajs.use(['../../dist/angular-seajs', 'app'], function(ngSea, app){
     angular.bootstrap(document, ['app']);
   });
 ```
 
-**(3)** 添加`angular-sea`为你的主模块的依赖中。
+**(3)** 添加`angular-seajs`为你的主模块的依赖中。
 ```
   //app.js
-  var app = angular.module('app', ['angular-sea', 'ngRoute']);
+  var app = angular.module('app', ['angular-seajs', 'ngRoute']);
 ```
 
 **(4)** 在`app.run`里进行初始化。

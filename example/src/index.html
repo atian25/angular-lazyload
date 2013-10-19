@@ -25,7 +25,7 @@
   <script src="components/angular/angular.js"></script>
   <script src="components/angular-route/angular-route.js"></script>
   -->
-  
+
   <script>
     // seajs config
     seajs.config({
@@ -39,7 +39,7 @@
     });
 
     //步骤一: 通过seajs加载angular-sea, 并手动bootstrap
-    seajs.use(['../../dist/angular-sea', 'app'], function(ngSea, app){
+    seajs.use(['../../dist/angular-seajs', 'app'], function(ngSea, app){
       angular.bootstrap(document, ['app']);
     });
   </script>

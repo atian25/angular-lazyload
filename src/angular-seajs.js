@@ -1,12 +1,12 @@
 /**
- * angular dynamic/lazy load by seajs 
+ * 通过[Sea.js](http://seajs.org/)动态按需加载[AngularJS](http://angularjs.org) 模块。 
  * 
  * @author TZ <atian25@qq.com>
  * @home https://github.com/atian25/angular-seajs
  */
 define(function (require, exports, module) {
   'use strict';
-  var ngSea = module.exports = angular.module('angular-sea', []);
+  var ngSea = module.exports = angular.module('angular-seajs', []);
 
   /**
    * 由于ng的问题, bootstrap完成后就无法通过app.controller动态注册,

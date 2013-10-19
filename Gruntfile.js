@@ -72,7 +72,8 @@ module.exports = function (grunt) {
       },
       dev: {
         files: [
-          cfg.src + '/**'
+          cfg.src + '/**',
+          '!dist/**'
         ],
         tasks: ['build']
       }
@@ -86,11 +87,11 @@ module.exports = function (grunt) {
     //复制
     concat: {
       options: {
-        //banner: '/*! <%= cfg.pkg.name %> - v<%= cfg.pkg.version %> - <%= cfg.pkg.repository.url %> - <%= grunt.template.today("yyyy-mm-dd") %> */'
+        banner: '/*! <%= cfg.pkg.name %> - v<%= cfg.pkg.version %> - <%= cfg.pkg.repository.url %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
         files: [
-          {expand: true, cwd:'src/', src: ['angular-sea.js'], dest: 'dist/'}
+          {expand: true, cwd:'src/', src: ['angular-seajs.js'], dest: 'dist/'}
         ]
       }
     },
@@ -98,14 +99,14 @@ module.exports = function (grunt) {
     //压缩
     uglify: {
       options: {
-        banner: '/*! <%= cfg.pkg.name %> - v<%= cfg.pkg.version %> - <%= cfg.pkg.repository.url %> - <%= grunt.template.today("yyyy-mm-dd") %> */',
+        banner: '/*! <%= cfg.pkg.name %> - v<%= cfg.pkg.version %> - <%= cfg.pkg.repository.url %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n',
         mangle: {
           except: ['require','exports', 'module']
         }
       },
       build: {
         files: {
-          'dist/angular-sea.min.js' : ['dist/angular-sea.js']
+          'dist/angular-seajs.min.js' : ['dist/angular-seajs.js']
         }
       }
     }

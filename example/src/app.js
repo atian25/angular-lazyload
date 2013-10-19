@@ -3,7 +3,7 @@ define(function (require, exports, module) {
   console.log('init app...' + (new Date().getTime()));
 
   //步骤二: 把`angular-sea`注册为主项目的依赖
-  var app = angular.module('app', ['angular-sea', 'ngRoute']);
+  var app = angular.module('app', ['angular-seajs', 'ngRoute']);
 
   //配置期
   app.config(['$routeProvider', function($routeProvider) {    
