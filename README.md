@@ -1,43 +1,50 @@
-## angular-sea
+# angular-sea 
 
-通过seajs动态加载angular模块。
+#### 通过[Sea.js](http://seajs.org/)动态按需加载[AngularJS](http://angularjs.org) 模块。
 
-### 安装
-- 通过bower安装: `bower install angular-sea`
-- 通过源码安装: 复制`dist`下对于的js即可
+---
+**[下载](dist/angular-sea.js)** (or **[压缩版](dist/angular-sea.min.js)**) **|**
+**[使用指南](#使用指南) |**
+**[基本原理](#基本原理) |**
+**[TODO/贡献代码](#TODO) |**
+**[示例使用说明](#示例使用说明)**
 
-### 如何使用
+---
 
-**具体参考源码**
 
-1.步骤一: 通过seajs加载angular-sea, 并手动启动bootstrap
+### 使用指南
 
+**(1)** 安装
+- 通过[Bower](http://bower.io/)安装: `bower install angular-sea`
+- 直接下载: [Download](dist/angular-sea.js) (or [Minified](dist/angular-sea.min.js))
+
+**(2)** 在你的`index.html`中先引入`angular.js`和`sea.js`。
+
+**(3)** 通过`seajs`加载`angular-sea`, 并手动启动bootstrap。
 ```
+  //修改`../../src/angular-sea`为`angular-sea`的存放路径, app为你的主模块文件`app.js` 
   seajs.use(['../../src/angular-sea', 'app'], function(ngSea, app){
     angular.bootstrap(document, ['app']);
   });
 ```
 
-2.步骤二: 引入`angular-sea`作为主项目的依赖
-
+**(3)** 添加`angular-sea`为你的主模块的依赖中。
 ```
   //app.js
   var app = angular.module('app', ['angular-sea', 'ngRoute']);
 ```
 
-3.步骤三: 配置事件名 (可选), 支持ui-route, 修改事件名为`$stateChangeStart`即可
+**(4)** 在`app.run`里进行初始化。
 ```
   //app.js
-  seaProvider.init('$routeChangeStart');
+  app.run(['$sea', function($sea){
+    $sea.init(app);
+    //两个参数均为可选, 支持ui-route, 修改事件名为`$stateChangeStart`即可
+    //$sea.init(app, '$routeChangeStart');
+  }]);
 ```
 
-4.步骤四: 保留provider的注册引用
-```
-  //app.js
-  app.register = seaProvider.register;
-```
-
-5.路由映射, 添加`controllerUrl`
+**(5)** 路由映射, 添加`controllerUrl`
 ```
   //app.js
   $routeProvider
@@ -49,14 +56,15 @@
   }
 ```
 
-6.动态注册, 通过`app.register`注册controller
+**(6)** 在你的模块里进行注册controller。
 ```
   //testACtrl.js
-  app.register.controller('testACtrl', ['$scope', '$routeParams', '$location', '$http',
-    function($scope, $routeParams, $location, $http){
-    }]
-  );
+  //通过`app.register`来注册
+  app.register.controller('testACtrl', ['$scope', function($scope){
+    ...
+  }]);
 ```
+
 
 ### 基本原理
 
@@ -67,9 +75,9 @@
 
 ### TODO
 - 添加测试的示例, 参考https://github.com/seajs/seajs/issues/874
-- 欢迎贡献代码
+- 欢迎PullRequest贡献代码
 
-### 项目示例初始化说明
+### 示例使用说明
 
 1. 安装[nodejs](http://nodejs.org) -- 下载对应版本并安装
 2. 安装[grunt](http://gruntjs.com) -- 命令行下执行: `npm install -g grunt-cli`  (不包含符号` ,下同)
