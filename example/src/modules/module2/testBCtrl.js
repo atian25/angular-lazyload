@@ -1,5 +1,5 @@
 /**
- * 资讯页面
+ * 无需外部传入的app, 则直接执行即可
  */
 define(function (require, exports, module) {
   'use strict';

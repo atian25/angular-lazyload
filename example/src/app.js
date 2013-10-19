@@ -2,19 +2,13 @@ define(function (require, exports, module) {
   "use strict";
   console.log('init app...' + (new Date().getTime()));
 
-  //步骤二: 引入`angular-sea`作为主项目的依赖
+  //步骤二: 把`angular-sea`注册为主项目的依赖
   var app = angular.module('app', ['angular-sea', 'ngRoute']);
 
   //配置期
-  app.config(['$routeProvider', 'seaProvider', function ($routeProvider, seaProvider) {
-    //步骤三: 配置事件名 (可选), 支持ui-route, 修改事件名为`$stateChangeStart`即可
-    seaProvider.init('$routeChangeStart');
-    
-    //步骤四: 保留provider的注册引用
-    app.register = seaProvider.register;
-    
+  app.config(['$routeProvider', function($routeProvider) {    
     //路由映射
-    //步骤五: 参见对应的controller文件示例
+    //步骤四: 提供controllerUrl, 参见对应的controller文件示例
     $routeProvider
       .when('/test/a', {
         controller: 'testACtrl',
@@ -38,6 +32,12 @@ define(function (require, exports, module) {
       });
     }
   ]);
+
+  //运行期
+  app.run(['$sea', function($sea){
+    //步骤三: 初始化
+    $sea.init(app);
+  }]);
 
   module.exports = app;
 });
