@@ -2,13 +2,12 @@ define(function (require, exports, module) {
   "use strict";
   console.log('init app...' + (new Date().getTime()));
 
-  //步骤二: 把`angular-sea`注册为主项目的依赖
-  var app = angular.module('app', ['angular-seajs', 'ngRoute']);
+  //Step3: add 'angular-lazyload' to your main module's list of dependencies
+  var app = angular.module('app', ['angular-lazyload', 'ngRoute']);
 
   //配置期
   app.config(['$routeProvider', function($routeProvider) {    
-    //路由映射
-    //步骤四: 提供controllerUrl, 参见对应的controller文件示例
+    //Step4: add `controllerUrl` to your route item config
     $routeProvider
       .when('/test/a', {
         controller: 'testACtrl',
@@ -34,9 +33,10 @@ define(function (require, exports, module) {
   ]);
 
   //运行期
-  app.run(['$sea', function($sea){
-    //步骤三: 初始化
-    $sea.init(app);
+  app.run(['$lazyload', function($lazyload){
+    //Step5: init lazyload & hold refs
+    $lazyload.init(app);
+    app.register = $lazyload.register;
   }]);
 
   module.exports = app;

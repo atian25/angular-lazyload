@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>angular-seajs-showcase</title>
+  <title>angular-lazyload-showcase</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body>
-
+  <h1>A lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.</h1>
   <div>
     <a href="#main">main</a> | <a href="#test/a">testA</a> | <a href="#test/b/123">testB</a>
   </div>
@@ -16,15 +16,20 @@
   <!-- preload script -->
   <!-- Note: when adding new script, need to config copy task at Gruntfile.js -->
   <!-- 示例地址-->
+  <!--
   <script src="http://seajs.org/dist/sea.js" id="seajsnode"></script>
   <script src="http://code.angularjs.org/1.2.0-rc.3/angular.min.js"></script>
   <script src="http://code.angularjs.org/1.2.0-rc.3/angular-route.min.js"></script>
+  -->
 
-  <!-- 实际项目中用bower安装到本地
+  <!-- 实际项目中用bower安装到本地 -->
   <script src="components/seajs/sea.js" id="seajsnode"></script>
   <script src="components/angular/angular.js"></script>
   <script src="components/angular-route/angular-route.js"></script>
-  -->
+
+  <!-- Step1: include js -->
+  <script src="../../dist/angular-lazyload.js"></script>
+ 
 
   <script>
     // seajs config
@@ -38,8 +43,8 @@
       }
     });
 
-    //步骤一: 通过seajs加载angular-sea, 并手动bootstrap
-    seajs.use(['../../dist/angular-seajs', 'app'], function(ngSea, app){
+    //Step2: bootstrap youself
+    seajs.use(['app'], function(app){
       angular.bootstrap(document, ['app']);
     });
   </script>

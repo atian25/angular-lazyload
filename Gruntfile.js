@@ -11,7 +11,7 @@ module.exports = function (grunt) {
 
   //define tasks
   //启动Web服务器,监控变更,自动加载
-  grunt.registerTask('server', ['connect', 'open', 'watch']);
+  grunt.registerTask('server', ['connect', 'open', 'watch:server']);
   grunt.registerTask('dev', ['connect', 'open', 'watch:dev']);
   grunt.registerTask('build', ['clean', 'concat', 'uglify']);
 
@@ -91,7 +91,7 @@ module.exports = function (grunt) {
       },
       build: {
         files: [
-          {expand: true, cwd:'src/', src: ['angular-seajs.js'], dest: 'dist/'}
+          {expand: true, cwd:'src/', src: ['angular-lazyload.js'], dest: 'dist/'}
         ]
       }
     },
@@ -106,7 +106,7 @@ module.exports = function (grunt) {
       },
       build: {
         files: {
-          'dist/angular-seajs.min.js' : ['dist/angular-seajs.js']
+          'dist/angular-lazyload.min.js' : ['dist/angular-lazyload.js']
         }
       }
     }

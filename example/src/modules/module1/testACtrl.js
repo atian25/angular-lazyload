@@ -5,7 +5,7 @@ define(function (require, exports, module) {
   'use strict';
 
   module.exports = function(app){
-    //步骤五: 通过app.register注册controller
+    //Step6: use `app.register` to register controller/service/directive/filter
     app.register.controller('testACtrl', ['$scope', '$routeParams', '$location', '$http',
       function($scope, $routeParams, $location, $http){
         //获取页面的入参
