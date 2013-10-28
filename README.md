@@ -1,6 +1,6 @@
-# angular-lazy-load
+# angular-lazyload
 
-#### A lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.
+#### a lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.
 ### 按需加载[AngularJS](http://angularjs.org)模块, 支持[Sea.js](http://seajs.org/)和[RequireJS](http://requirejs.org/‎)。
 
 ---
@@ -38,7 +38,7 @@
   });
 ```
 
-**(3)** 添加`angular-seajs`为你的主模块的依赖中。
+**(3)** 添加`angular-lazyload`为你的主模块的依赖中。
 ```
   //Step3: add 'angular-lazyload' to your main module's list of dependencies
   var app = angular.module('app', ['angular-lazyload', 'ngRoute']);

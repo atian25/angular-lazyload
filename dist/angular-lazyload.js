@@ -1,4 +1,4 @@
-/*! angular-lazyload - v0.4.0 - https://github.com/atian25/angular-lazyload - 2013-10-21 */
+/*! angular-lazyload - v0.4.0 - https://github.com/atian25/angular-lazyload - 2013-10-28 */
 /**
  * A lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.
  * support [Sea.js](http://seajs.org/) & [RequireJS](http://requirejs.org/‎)
@@ -48,29 +48,39 @@
      * @param {Function/String} loaderType The loader function: //FIXME: only support `seajs` current.
      *   - 'seajs' :  default value, use [Sea.js](http://seajs.org/) to async load modules
      *   - 'requirejs': use [RequireJS](http://requirejs.org/‎) to async load modules
-     *   - {Function} : custom loader function:
+     *   - {Object} : custom loader:
+     *     - check {Function} Optional , check whether need to load by loader
+     *     - load {Function} 
      *       - route : current route item
+     *       - register: register refs object
      *       - callback : callback function when async load success
      */
-    this.init = function(params, eventName, loaderType){
+    this.init = function(params, loaderType){
       //get loaderFn: if loaderType is function, then just use it, else use build in loader by loaderType, default to seajs
-      var loaderFn = angular.isFunction(loaderType) ? loaderType : this.loaders[loaderType] || this.loaders['seajs'];
+      var loader = angular.isObject(loaderType) ? loaderType : this.loaders[loaderType] || this.loaders['seajs'];
 
       //listen to route change event to hook
-      $rootScope.$on(eventName || '$routeChangeStart', function(e, target){
+      $rootScope.$on('$routeChangeStart', function(e, target){
         //console.debug(e, '|', target);
         var route = target && target.$$route;
         if(route){
-          route.resolve = route.resolve || {};
-          //keypoint: use `route.resolve`
-          route.resolve.loadedModule = function(){
-            var defer = $q.defer();
-            loaderFn(route, function(m){
-              $rootScope.safeApply(function(){
-                defer.resolve(angular.isFunction(m) ? m(params) : m);
+          // if loader provide check(), then check it
+          if(!angular.isFunction(loader.check) || loader.check(route)){
+            route.resolve = route.resolve || {};
+            //keypoint: use `route.resolve`
+            route.resolve.loadedModule = function(){
+              var defer = $q.defer();
+              loader.load(route, function(m){
+                $rootScope.safeApply(function(){
+                  defer.resolve(angular.isFunction(m) ? m(params, register) : m);
+                });
+              }, function(m){
+                $rootScope.safeApply(function(){
+                  defer.reject(m);
+                });
               });
-            });
-            return defer.promise;
+              return defer.promise;
+            }  
           }
         }  
       });  
@@ -81,17 +91,36 @@
    * build-in loaders 
    */
   LazyLoadProvider.prototype.loaders = {};
-  LazyLoadProvider.prototype.loaders['seajs'] = function(route, callback){
-    //if exsit `controllerUrl` then trigger seajs async load.
-    if(typeof route.controllerUrl == 'string'){
-      seajs.use(route.controllerUrl, callback);
+
+  LazyLoadProvider.prototype.loaders['seajs'] = {
+    check: function(route){
+      //if exsit `controllerUrl` then trigger seajs async load.
+      return typeof route.controllerUrl == 'string'
+    },
+    load: function(route, suc, fail){
+      seajs.use(route.controllerUrl, function(m){
+        if(angular.isUndefined(m)){
+          fail(m);
+        }else{
+          suc(m);
+        }
+      });
     }
   }
 
-  LazyLoadProvider.prototype.loaders['requirejs'] = function(route, callback){
-    //if exsit `controllerUrl` then trigger requirejs async load.
-    if(typeof route.controllerUrl == 'string'){
-      require(route.controllerUrl, callback);
+  LazyLoadProvider.prototype.loaders['requirejs'] = {
+    check: function(route){
+      //if exsit `controllerUrl` then trigger requirejs async load.
+      return typeof route.controllerUrl == 'string'
+    },
+    load: function(route, suc, fail){
+      require(route.controllerUrl, function(m){
+        if(angular.isUndefined(m)){
+          fail(m);
+        }else{
+          suc(m);
+        }
+      });
     }
   }
 

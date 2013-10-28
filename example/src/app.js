@@ -4,6 +4,7 @@ define(function (require, exports, module) {
 
   //Step3: add 'angular-lazyload' to your main module's list of dependencies
   var app = angular.module('app', ['angular-lazyload', 'ngRoute']);
+  require('./sharedService.js')(app);
 
   //配置期
   app.config(['$routeProvider', function($routeProvider) {    
@@ -33,10 +34,11 @@ define(function (require, exports, module) {
   ]);
 
   //运行期
-  app.run(['$lazyload', function($lazyload){
+  app.run(['$lazyload', 'sharedService', function($lazyload, sharedService){
     //Step5: init lazyload & hold refs
     $lazyload.init(app);
     app.register = $lazyload.register;
+    sharedService.test()
   }]);
 
   module.exports = app;
