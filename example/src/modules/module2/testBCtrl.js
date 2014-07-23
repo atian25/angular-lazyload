@@ -6,10 +6,10 @@ define(function (require, exports, module) {
   var app = require('app');
 
   //注册controller
-  app.register.controller('testBCtrl', ['$scope', '$routeParams', '$location', '$http',
-    function($scope, $routeParams, $location, $http){
+  app.register.controller('testBCtrl', ['$scope', '$stateParams', '$location', '$http',
+    function($scope, $stateParams, $location, $http){
       //获取页面的入参
-      var id = $routeParams.id;
+      var id = $stateParams.id;
       $scope.id = id;
     }]
   );
