@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "author": "TZ <atian25@qq.com>",
   "description": "A lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.",
+  "main": ["dist/angular-lazyload.js"],
   "repository": {
     "type": "git",
     "url": "https://github.com/atian25/angular-lazyload"
