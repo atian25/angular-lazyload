@@ -1,6 +1,6 @@
 # angular-lazyload
 
-## **NOT CURRENTLY MAINTAINED, use https://github.com/ocombe/ocLazyLoad or angular2**
+## **NOT CURRENTLY MAINTAINED, use [ocLazyLoad](https://github.com/ocombe/ocLazyLoad) or angular2**
 
 #### a lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.
 ### 按需加载[AngularJS](http://angularjs.org)模块, 支持[Sea.js](http://seajs.org/)和[RequireJS](http://requirejs.org/‎)。
