@@ -6,12 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 </head>
 <body>
-  <h1>A lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.</h1>
+  <h2>A lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom. </h2>
+  <h2>modify base on angular-ui-router</h2>
   <div>
     <a href="#main">main</a> | <a href="#test/a">testA</a> | <a href="#test/b/123">testB</a>
   </div>
   <!-- route container -->
-  <div data-ng-view data-ng-cloak id="view"></div>
+  <ui-view id="view" data-ng-view data-ng-cloak></ui-view>
+  <ui-view name="viewA"></ui-view>
+  <ui-view name="viewAB"></ui-view>
+
+  <!-- <div data-ng-view data-ng-cloak id="view"></div> -->
 
   <!-- preload script -->
   <!-- Note: when adding new script, need to config copy task at Gruntfile.js -->
@@ -25,7 +30,8 @@
   <!-- 实际项目中用bower安装到本地 -->
   <script src="components/seajs/sea.js" id="seajsnode"></script>
   <script src="components/angular/angular.js"></script>
-  <script src="components/angular-route/angular-route.js"></script>
+  <!-- <script src="components/angular-route/angular-route.js"></script> -->
+  <script src="components/angular-ui-router/release/angular-ui-router.js"></script>
 
   <!-- Step1: include js -->
   <script src="../../dist/angular-lazyload.js"></script>

@@ -4,7 +4,7 @@
 
 #### a lazyload service for angular projects, only load-on-demand, support seajs/requirejs/custom.
 ### 按需加载[AngularJS](http://angularjs.org)模块, 支持[Sea.js](http://seajs.org/)和[RequireJS](http://requirejs.org/‎)。
-
+### fork [atian25/angular-lazyload](https://github.com/atian25/angular-lazyload),修改为对angular-ui-router支持。
 ---
 **[下载](dist/angular-lazyload.js)** (or **[压缩版](dist/angular-lazyload.min.js)**) **|**
 **[使用指南](#使用指南) |**

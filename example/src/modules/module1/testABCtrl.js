@@ -6,7 +6,7 @@ define(function (require, exports, module) {
 
   module.exports = function(app){
     //Step6: use `app.register` to register controller/service/directive/filter
-    app.register.controller('testACtrl', ['$scope', '$stateParams', '$location', '$http',
+    app.register.controller('testABCtrl', ['$scope', '$stateParams', '$location', '$http',
       function($scope, $stateParams, $location, $http){
         //获取页面的入参
         var id = $stateParams.id;

@@ -1,9 +1,9 @@
 {
   "name": "angular-seajs-showcase",
   "dependencies": {
-    "seajs": "*",
+  	"seajs":"*",
     "angular": ">=1.2.0-rc.3",
-    "angular-route": ">=1.2.0-rc.3",
+    "angular-ui-router": ">=0.2.10",
     "angular-mocks": ">=1.2.0-rc.3"
   }
 }
